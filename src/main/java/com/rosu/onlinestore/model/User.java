@@ -10,13 +10,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Data
 @Table(name = "users")
-@Entity
-public class User {
+@NoArgsConstructor
+public class User implements Serializable {
     private static final long serialVersionUID = 4887904943282174032L;
 
     @Id
@@ -44,4 +44,18 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore  // fix bi-direction toString() recursion problem
     private Cart cart;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", active=" + active +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

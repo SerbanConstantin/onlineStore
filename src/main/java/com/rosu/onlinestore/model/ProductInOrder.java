@@ -1,7 +1,7 @@
 package com.rosu.onlinestore.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +12,9 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Data
+@NoArgsConstructor
 public class ProductInOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,6 +51,17 @@ public class ProductInOrder {
 
     @Min(1)
     private Integer count;
+
+    public ProductInOrder(ProductInfo productInfo, Integer quantity) {
+        this.productId = productInfo.getProductId();
+        this.productName = productInfo.getProductName();
+        this.productDescription = productInfo.getProductDescription();
+        this.productIcon = productInfo.getProductIcon();
+        this.categoryType = productInfo.getCategoryType();
+        this.productPrice = productInfo.getProductPrice();
+        this.productStock = productInfo.getProductStock();
+        this.count = quantity;
+    }
 
     @Override
     public String toString() {

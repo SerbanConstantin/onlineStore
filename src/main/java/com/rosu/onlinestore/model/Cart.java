@@ -2,19 +2,18 @@ package com.rosu.onlinestore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
-public class Cart {
+@NoArgsConstructor
+public class Cart implements Serializable {
 
     @Id
     @NotNull
@@ -37,6 +36,10 @@ public class Cart {
                 "cartId=" + cartId +
                 ", products=" + products +
                 '}';
+    }
+
+    public Cart(User user) {
+        this.user  = user;
     }
 
 }

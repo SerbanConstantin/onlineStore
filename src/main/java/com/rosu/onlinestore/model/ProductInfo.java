@@ -1,24 +1,23 @@
 package com.rosu.onlinestore.model;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Data
-public class ProductInfo {
+@DynamicUpdate
+public class ProductInfo implements Serializable {
     @Id
     private String productId;
 
@@ -46,4 +45,7 @@ public class ProductInfo {
     private Date createTime;
     @UpdateTimestamp
     private Date updateTime;
+
+    public ProductInfo() {
+    }
 }

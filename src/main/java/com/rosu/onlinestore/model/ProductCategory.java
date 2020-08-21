@@ -1,22 +1,21 @@
 package com.rosu.onlinestore.model;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Entity
-public class ProductCategory {
-
+@Data
+@DynamicUpdate
+public class ProductCategory implements Serializable {
     @Id
     @GeneratedValue
     private Integer categoryId;
@@ -30,4 +29,12 @@ public class ProductCategory {
 
     private Date updateTime;
 
+
+    public ProductCategory() {
+    }
+
+    public ProductCategory(String categoryName, Integer categoryType) {
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+    }
 }
