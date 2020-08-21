@@ -1,5 +1,6 @@
 package com.rosu.onlinestore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,4 +40,8 @@ public class User {
     private boolean active;
     @NotEmpty
     private String role = "ROLE_CUSTOMER";
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore  // fix bi-direction toString() recursion problem
+    private Cart cart;
 }
