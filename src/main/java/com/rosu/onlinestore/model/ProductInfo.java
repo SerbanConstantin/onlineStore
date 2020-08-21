@@ -1,0 +1,49 @@
+package com.rosu.onlinestore.model;
+
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Data
+public class ProductInfo {
+    @Id
+    private String productId;
+
+    @NotNull
+    private String productName;
+
+    @NotNull
+    private BigDecimal productPrice;
+
+    @NotNull
+    @Min(0)
+    private Integer productStock;
+
+    private String productDescription;
+
+    private String productIcon;
+
+    @ColumnDefault("0")
+    private Integer productStatus;
+
+    @ColumnDefault("0")
+    private Integer categoryType;
+
+    @CreationTimestamp
+    private Date createTime;
+    @UpdateTimestamp
+    private Date updateTime;
+}
