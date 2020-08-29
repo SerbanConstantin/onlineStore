@@ -1,7 +1,7 @@
 package com.rosu.onlinestore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
@@ -42,7 +42,7 @@ public class User implements Serializable {
     private String role = "ROLE_CUSTOMER";
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore  // fix bi-direction toString() recursion problem
+    @JsonIgnore
     private Cart cart;
 
     @Override

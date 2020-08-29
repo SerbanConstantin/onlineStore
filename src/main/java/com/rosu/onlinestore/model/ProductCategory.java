@@ -33,8 +33,8 @@ public class ProductCategory implements Serializable {
     public ProductCategory() {
     }
 
-    public ProductCategory(String categoryName, Integer categoryType) {
-        this.categoryName = categoryName;
-        this.categoryType = categoryType;
-    }
+//    public ProductCategory(String categoryName, Integer categoryType) {
+//        this.categoryName = categoryName;
+//        this.categoryType = categoryType;
+//    }
 }

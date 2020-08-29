@@ -6,9 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 @SpringBootApplication
 public class OnlinestoreApplication implements CommandLineRunner {
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Autowired
 	private ProductCategoryRepository productCategoryRepository;
@@ -19,9 +27,11 @@ public class OnlinestoreApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		ProductCategory productCategory = new ProductCategory();
 		productCategory.setCategoryName("Caramida");
 		productCategory.setCategoryType(10);
+
 
 		ProductCategory productCategory2 = new ProductCategory();
 		productCategory2.setCategoryName("Tencuieli");
@@ -40,10 +50,7 @@ public class OnlinestoreApplication implements CommandLineRunner {
 		productCategoryRepository.save(productCategory2);
 		productCategoryRepository.save(productCategory3);
 		productCategoryRepository.save(productCategory4);
+		productCategoryRepository.deleteById(2);
 
-		for (ProductCategory p: productCategoryRepository.findAll()) {
-			System.out.println(p.getCategoryId() + ". " + productCategory.getCategoryName() + " " + productCategory.getCategoryType());
-
-		}
 	}
 }
